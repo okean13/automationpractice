@@ -40,6 +40,12 @@ public class contactUsPage extends BaseTest {
     public @FindBy(xpath ="//p[@class=\"alert alert-success\"]")
     WebElement SuccessfulMessage;
 
+    public @FindBy(xpath = "//div[@class=\"alert alert-danger\"]")
+    WebElement FailedSelectedHeadingCheckBoxMessage;
+
+    public @FindBy(className = "container")
+    WebElement FailedOrderReferenceField;
+
     public void clickContactUsButton() {
         wdwait.until(ExpectedConditions.visibilityOf(ContactUsButton));
         ContactUsButton.click();
@@ -62,7 +68,7 @@ public class contactUsPage extends BaseTest {
         OrderReferenceField.clear();
         OrderReferenceField.sendKeys(String.valueOf(number));
     }
-
+    // public void
     public void clickAttachFileButton() {
         wdwait.until(ExpectedConditions.elementToBeClickable(AttachFileButton));
         AttachFileButton.click();
@@ -86,5 +92,21 @@ public class contactUsPage extends BaseTest {
     public String successAlertText(){
         wdwait.until(ExpectedConditions.visibilityOf(SuccessfulMessage));
         return SuccessfulMessage.getText();
+    }
+    public boolean failedAlertDisplayed(){
+        wdwait.until(ExpectedConditions.visibilityOf(FailedSelectedHeadingCheckBoxMessage));
+        return FailedSelectedHeadingCheckBoxMessage.isDisplayed();
+    }
+    public String failedAlertText(){
+        wdwait.until(ExpectedConditions.visibilityOf(FailedSelectedHeadingCheckBoxMessage));
+        return FailedSelectedHeadingCheckBoxMessage.getText();
+    }
+    public boolean failedOrderReferenceDisplayed(){
+        wdwait.until(ExpectedConditions.visibilityOf(FailedOrderReferenceField));
+        return FailedOrderReferenceField.isDisplayed();
+    }
+    public String failedOrderReferenceText(){
+        wdwait.until(ExpectedConditions.visibilityOf(FailedOrderReferenceField));
+        return FailedOrderReferenceField.getText();
     }
 }
