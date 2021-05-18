@@ -9,9 +9,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-public class contactUsPage extends BaseTest {
+public class ContactUsPage extends BaseTest {
 
-    public contactUsPage() {
+    public ContactUsPage() {
         PageFactory.initElements(driver, this);
 
     }
