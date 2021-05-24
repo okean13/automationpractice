@@ -101,12 +101,5 @@ public class ContactUsPage extends BaseTest {
         wdwait.until(ExpectedConditions.visibilityOf(FailedSelectedHeadingCheckBoxMessage));
         return FailedSelectedHeadingCheckBoxMessage.getText();
     }
-    public boolean failedOrderReferenceDisplayed(){
-        wdwait.until(ExpectedConditions.visibilityOf(FailedOrderReferenceField));
-        return FailedOrderReferenceField.isDisplayed();
-    }
-    public String failedOrderReferenceText(){
-        wdwait.until(ExpectedConditions.visibilityOf(FailedOrderReferenceField));
-        return FailedOrderReferenceField.getText();
-    }
+
 }

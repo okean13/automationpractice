@@ -65,7 +65,18 @@ public class ContactUsTest extends BaseTest {
         Assert.assertEquals("There is 1 error\n" +
                 "Invalid email address.",ContactUsPageWorkClass.failedAlertText());
     }
-
+    @Test
+    public void contactUsInvalidDataEmailFieldTest2() {
+        ContactUsPageWorkClass.clickContactUsButton();
+        ContactUsPageWorkClass.selectHeading("1");
+        ContactUsPageWorkClass.inputEmailAddress(" prvoslavyahoo.com");
+        ContactUsPageWorkClass.inputOrderReference(11133);
+        ContactUsPageWorkClass.inputMessage("test");
+        ContactUsPageWorkClass.clickSendButton();
+        Assert.assertTrue(ContactUsPageWorkClass.failedAlertDisplayed());
+        Assert.assertEquals("There is 1 error\n" +
+                "Invalid email address.",ContactUsPageWorkClass.failedAlertText());
+    }
     @Test
     public void contactUsInvalidDataMessageFieldTest() {
         ContactUsPageWorkClass.clickContactUsButton();
