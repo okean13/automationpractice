@@ -6,17 +6,21 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class CartPage extends BaseTest {
+public class MainPage extends BaseTest {
 
-    public CartPage()
+    public MainPage()
+
     {
         PageFactory.initElements(driver,this);
     }
 
-    public @FindBy(xpath ="//[@class=\"shopping_cart\"]")
+    public @FindBy(id ="header_logo")
+    WebElement YourLogoLink;
+
+    public @FindBy(xpath ="//div[@class=\"shopping_cart\"]")
     WebElement CartLink;
 
-    public @FindBy(xpath ="//div[@id=\"searchbox\"]")
+    public @FindBy(xpath ="//form[@id=\"searchbox\"]")
     WebElement SearchButton;
 
     public @FindBy(xpath ="//div[[id=\"newsletter_block_left\"]")
@@ -40,27 +44,31 @@ public class CartPage extends BaseTest {
     public @FindBy(xpath ="//section[5]/h4[contains(text(),'Store information')]")
     WebElement StoreInformationButton;
 
+    public void clickYourLogoLink(){
+    wdwait.until(ExpectedConditions.visibilityOf(YourLogoLink));
+    YourLogoLink.click();
+}
     public void cartLinkClick(){
         wdwait.until(ExpectedConditions.visibilityOf(CartLink));
         CartLink.click();
     }
-    public void searchButtonClick(){
-        wdwait.until(ExpectedConditions.visibilityOf(SearchButton));
-        SearchButton.click();
+    public void inputSearchButton(String keyword){
+        wdwait.until(ExpectedConditions.elementToBeClickable(SearchButton));
+        SearchButton.clear();
+        SearchButton.sendKeys(keyword);
     }
     public void newsLetterButtonClick(){
         wdwait.until(ExpectedConditions.visibilityOf(NewsletterButton));
         NewsletterButton.click();
     }
-    public void inputEnterYourEmail(){
+    public void inputEnterYourEmail(String email){
         wdwait.until(ExpectedConditions.visibilityOf(EnterYourEmailfield));
         EnterYourEmailfield.clear();
-        EnterYourEmailfield.sendKeys();
+        EnterYourEmailfield.sendKeys(email);
     }
     public void clickFollowUsButton(){
         wdwait.until(ExpectedConditions.visibilityOf(FollowUsButton));
         FollowUsButton.click();
-
     }
     public void clickCategories(){
         wdwait.until(ExpectedConditions.visibilityOf(CategoriesButton));
