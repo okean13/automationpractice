@@ -15,7 +15,7 @@ public class BaseTest {
     public void setUp(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        wdwait = new WebDriverWait(driver, 30);
+        wdwait = new WebDriverWait(driver, 60);
         driver.get("http://automationpractice.com/index.php");
         driver.manage().window().maximize();
     }
