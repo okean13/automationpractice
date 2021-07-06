@@ -10,59 +10,62 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class MainPage extends BaseTest {
 
-    public MainPage()
-
-    {
-        PageFactory.initElements(driver,this);
+    public MainPage() {
+        PageFactory.initElements(driver, this);
     }
 
-    public @FindBy(id ="header_logo")
+    public @FindBy(id = "header_logo")
     WebElement YourLogoLink;
 
-    public @FindBy(xpath ="//div[@class=\"shopping_cart\"]")
+    public @FindBy(xpath = "//div[@class=\"shopping_cart\"]")
     WebElement CartLink;
 
-    public @FindBy(xpath ="//form/input[4][@name=\"search_query\"]")
+    public @FindBy(xpath = "//form/input[4][@name=\"search_query\"]")
     WebElement SearchButton;
 
-    public @FindBy(xpath ="//div/h4[contains(text(),'Newsletter')]")
+    public @FindBy(xpath = "//div/h4[contains(text(),'Newsletter')]")
     WebElement NewsletterButton;
 
-    public @FindBy(xpath ="//div/input[@value=\"Enter your e-mail\"]")
+    public @FindBy(xpath = "//div/input[@value=\"Enter your e-mail\"]")
     WebElement EnterYourEmailfield;
 
-    public @FindBy(xpath ="//div/footer/div/section/h4[contains(text(),'Follow us')]")
+    public @FindBy(xpath = "//div/footer/div/section/h4[contains(text(),'Follow us')]")
     WebElement FollowUsButton;
 
-    public @FindBy(xpath ="//div/section[@id='social_block']")
+    public @FindBy(xpath = "//div/section[@id='social_block']")
     WebElement SocialBlockLinks;
 
-    public @FindBy(xpath ="//div/section[2]/h4[contains(text(),'Categories')]")
+    public @FindBy(xpath = "//div/section[2]/h4[contains(text(),'Categories')]")
     WebElement CategoriesButton;
 
-    public @FindBy(xpath ="//div/section[3]/h4[contains(text(),'Information')]")
+    public @FindBy(xpath = "//div/section[3]/h4[contains(text(),'Information')]")
     WebElement InformationButton;
 
-    public @FindBy(xpath ="//div/section[4]/h4[contains(text(),'My account')]")
+    public @FindBy(xpath = "//div/section[4]/h4[contains(text(),'My account')]")
     WebElement MyAccountButton;
 
-    public @FindBy(xpath ="//div/section[5]/h4[contains(text(),'Store information')]")
+    public @FindBy(xpath = "//div/section[5]/h4[contains(text(),'Store information')]")
     WebElement StoreInformationButton;
 
-   // public @FindBy(xpath = "//body[@id=\"index\"]")
-    //WebElement ReklamaZaGasenje;
+    public @FindBy(xpath = "//div/p[@class=\"alert alert-success\"]")
+    WebElement NewsletterMessage;
+
+     public @FindBy(xpath = "//p[@class=\"alert alert-danger\"]")
+    WebElement WarningNewsletterMessage;
 
     //public @FindBy(xpath ="//body[@id=\"top\"]")
     //WebElement NovaReklamaZaGasenje;
 
-    public void clickYourLogoLink(){
-    wdwait.until(ExpectedConditions.visibilityOf(YourLogoLink));
-    YourLogoLink.click();
-}
-    public void cartLinkClick(){
+    public void clickYourLogoLink() {
+        wdwait.until(ExpectedConditions.visibilityOf(YourLogoLink));
+        YourLogoLink.click();
+    }
+
+    public void cartLinkClick() {
         wdwait.until(ExpectedConditions.visibilityOf(CartLink));
         CartLink.click();
     }
+
     public void inputSearchButton(String keyword) {
         wdwait.until(ExpectedConditions.visibilityOf(SearchButton));
         SearchButton.clear();
@@ -70,50 +73,51 @@ public class MainPage extends BaseTest {
         SearchButton.sendKeys(Keys.ENTER);
     }
 
-    public void newsLetterButtonClick(){
+    public void newsLetterButtonClick() {
         wdwait.until(ExpectedConditions.visibilityOf(NewsletterButton));
         NewsletterButton.click();
     }
-    public void inputEnterYourEmail(String email){
+
+    public boolean successfulNewsletterSubscriptionAlertDisplayed() {
+        wdwait.until(ExpectedConditions.visibilityOf(NewsletterMessage));
+        return NewsletterMessage.isDisplayed();
+    }
+
+    public String successfulNewsletterSubscriptionAlertGetText() {
+        wdwait.until(ExpectedConditions.visibilityOf(NewsletterMessage));
+        return NewsletterMessage.getText();
+    }
+
+    public void inputEnterYourEmail(String email) {
         wdwait.until(ExpectedConditions.visibilityOf(EnterYourEmailfield));
         EnterYourEmailfield.clear();
         EnterYourEmailfield.sendKeys(email);
         EnterYourEmailfield.sendKeys(Keys.ENTER);
     }
 
-    public void clickFollowUsButton(){
-        wdwait.until(ExpectedConditions.visibilityOf(FollowUsButton));
-        FollowUsButton.click();
+    public boolean unsuccessfulNewsletterSubscriptionDisplayed(){
+        wdwait.until(ExpectedConditions.visibilityOf(WarningNewsletterMessage));
+        return WarningNewsletterMessage.isDisplayed();
     }
-    public void clickCategories(){
-        wdwait.until(ExpectedConditions.visibilityOf(CategoriesButton));
-        CategoriesButton.click();
-    }
-    public void clickInformation(){
+    public String unsuccessfulNewsletterSubscriptionGetText(){
+        wdwait.until(ExpectedConditions.visibilityOf(WarningNewsletterMessage));
+        return WarningNewsletterMessage.getText();
+}
+    public void clickInformation() {
         wdwait.until(ExpectedConditions.visibilityOf(InformationButton));
         InformationButton.click();
     }
-    public void clickMyAccount(){
+
+    public void clickMyAccount() {
         wdwait.until(ExpectedConditions.visibilityOf(MyAccountButton));
         MyAccountButton.click();
     }
-    public void clickStoreInformation(){
+
+    public void clickStoreInformation() {
         wdwait.until(ExpectedConditions.visibilityOf(StoreInformationButton));
         StoreInformationButton.click();
     }
-    public void sleep()throws InterruptedException{
-        Thread.sleep(3000);
-    }
-   // public void clickReklamaZaGasenje(){
-      //  wdwait.until(ExpectedConditions.visibilityOf(ReklamaZaGasenje));
-        //ReklamaZaGasenje.click();
-   // }
-    //public void clickNovaReklamaZaGasenje(){
-       // wdwait.until(ExpectedConditions.visibilityOf(NovaReklamaZaGasenje));
-        //NovaReklamaZaGasenje.click();
-    //}
-
-    }
+}
 
 
 

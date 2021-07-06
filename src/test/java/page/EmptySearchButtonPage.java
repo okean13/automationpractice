@@ -13,11 +13,8 @@ public class EmptySearchButtonPage extends BaseTest {
         PageFactory.initElements(driver,this);
     }
 
-    public @FindBy(xpath ="//div/h1/span[@class=\"heading-counter\"]")
+    public @FindBy(xpath ="//span[@class=\"heading-counter\"]")
     WebElement WarningMessage;
-
-    public @FindBy(xpath ="//div/h1/p[@class=\"alert alert-warning\"]")
-    WebElement NewMessage;
 
     public boolean successAlertDisplayed(){
         wdwait.until(ExpectedConditions.visibilityOf(WarningMessage));
@@ -27,4 +24,5 @@ public class EmptySearchButtonPage extends BaseTest {
         wdwait.until(ExpectedConditions.visibilityOf(WarningMessage));
         return WarningMessage.getText();
     }
+
 }
