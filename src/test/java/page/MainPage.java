@@ -1,8 +1,10 @@
 package page;
 
 import base.BaseTest;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,32 +31,24 @@ public class MainPage extends BaseTest {
     public @FindBy(xpath = "//div/input[@value=\"Enter your e-mail\"]")
     WebElement EnterYourEmailfield;
 
-    public @FindBy(xpath = "//div/footer/div/section/h4[contains(text(),'Follow us')]")
-    WebElement FollowUsButton;
-
-    public @FindBy(xpath = "//div/section[@id='social_block']")
-    WebElement SocialBlockLinks;
-
-    public @FindBy(xpath = "//div/section[2]/h4[contains(text(),'Categories')]")
-    WebElement CategoriesButton;
-
-    public @FindBy(xpath = "//div/section[3]/h4[contains(text(),'Information')]")
-    WebElement InformationButton;
-
-    public @FindBy(xpath = "//div/section[4]/h4[contains(text(),'My account')]")
-    WebElement MyAccountButton;
-
-    public @FindBy(xpath = "//div/section[5]/h4[contains(text(),'Store information')]")
-    WebElement StoreInformationButton;
-
     public @FindBy(xpath = "//div/p[@class=\"alert alert-success\"]")
     WebElement NewsletterMessage;
 
-     public @FindBy(xpath = "//p[@class=\"alert alert-danger\"]")
+    public @FindBy(xpath = "//p[@class=\"alert alert-danger\"]")
     WebElement WarningNewsletterMessage;
 
-    //public @FindBy(xpath ="//body[@id=\"top\"]")
-    //WebElement NovaReklamaZaGasenje;
+    public @FindBy(xpath = "(//ul/li/div[@class=\"product-container\"])[1]")
+    WebElement TShirtButton;
+
+    public @FindBy(xpath = "//span[contains(text(),'More')]")
+    WebElement MoreTShirtButton;
+
+    public @FindBy(xpath = "(//a[@data-id-product=\"1\"])[1]")
+    WebElement AddToCartButton;
+
+    public @FindBy(xpath = "//div[@class=\"layer_cart_product col-xs-12 col-md-6\"]/h2")
+    WebElement AddToCartMessage;
+
 
     public void clickYourLogoLink() {
         wdwait.until(ExpectedConditions.visibilityOf(YourLogoLink));
@@ -95,29 +89,54 @@ public class MainPage extends BaseTest {
         EnterYourEmailfield.sendKeys(Keys.ENTER);
     }
 
-    public boolean unsuccessfulNewsletterSubscriptionDisplayed(){
+    public boolean unsuccessfulNewsletterSubscriptionDisplayed() {
         wdwait.until(ExpectedConditions.visibilityOf(WarningNewsletterMessage));
         return WarningNewsletterMessage.isDisplayed();
     }
-    public String unsuccessfulNewsletterSubscriptionGetText(){
+
+    public String unsuccessfulNewsletterSubscriptionGetText() {
         wdwait.until(ExpectedConditions.visibilityOf(WarningNewsletterMessage));
         return WarningNewsletterMessage.getText();
-}
-    public void clickInformation() {
-        wdwait.until(ExpectedConditions.visibilityOf(InformationButton));
-        InformationButton.click();
     }
 
-    public void clickMyAccount() {
-        wdwait.until(ExpectedConditions.visibilityOf(MyAccountButton));
-        MyAccountButton.click();
+    public void hoverTShirt() {
+        wdwait.until(ExpectedConditions.elementToBeClickable(TShirtButton));
+        Actions hover = new Actions(driver);
+        hover.moveToElement(TShirtButton).perform();
     }
 
-    public void clickStoreInformation() {
-        wdwait.until(ExpectedConditions.visibilityOf(StoreInformationButton));
-        StoreInformationButton.click();
+    public void clickTShirtButton() {
+        wdwait.until(ExpectedConditions.visibilityOf(TShirtButton));
+        TShirtButton.click();
+    }
+
+    public void clickMoreTShirtButton() {
+        wdwait.until(ExpectedConditions.visibilityOf(MoreTShirtButton));
+        MoreTShirtButton.click();
+    }
+
+    public void clickAddToCartButton() {
+        wdwait.until(ExpectedConditions.visibilityOf(AddToCartButton));
+        AddToCartButton.click();
+    }
+
+    public boolean successfulAddToCartAlertDisplayed() {
+        wdwait.until(ExpectedConditions.visibilityOf(AddToCartMessage));
+        return AddToCartMessage.isDisplayed();
+    }
+
+    public String successfulAddToCartAlertGetText() {
+        wdwait.until(ExpectedConditions.visibilityOf(AddToCartMessage));
+        return AddToCartMessage.getText();
+    }
+
+    public void ScrollDown() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", TShirtButton);
     }
 }
+
+
 
 
 

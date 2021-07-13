@@ -51,4 +51,12 @@ import sun.applet.Main;
             Assert.assertTrue(MainPageWorkClass.unsuccessfulNewsletterSubscriptionDisplayed());
             Assert.assertEquals("Newsletter : This email address is already registered.", MainPageWorkClass.unsuccessfulNewsletterSubscriptionGetText());
         }
+        @Test
+        public void SuccessfulAddToCartTest(){
+            MainPageWorkClass.ScrollDown();
+            MainPageWorkClass.hoverTShirt();
+            MainPageWorkClass.clickAddToCartButton();
+            Assert.assertTrue(MainPageWorkClass.successfulAddToCartAlertDisplayed());
+            Assert.assertEquals("Product successfully added to your shopping cart",MainPageWorkClass.successfulAddToCartAlertGetText());
+        }
     }
