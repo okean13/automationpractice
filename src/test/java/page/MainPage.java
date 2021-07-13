@@ -40,15 +40,13 @@ public class MainPage extends BaseTest {
     public @FindBy(xpath = "(//ul/li/div[@class=\"product-container\"])[1]")
     WebElement TShirtButton;
 
-    public @FindBy(xpath = "//span[contains(text(),'More')]")
-    WebElement MoreTShirtButton;
-
     public @FindBy(xpath = "(//a[@data-id-product=\"1\"])[1]")
     WebElement AddToCartButton;
 
     public @FindBy(xpath = "//div[@class=\"layer_cart_product col-xs-12 col-md-6\"]/h2")
     WebElement AddToCartMessage;
-
+    public @FindBy(xpath = "//span[contains(text(),'More')]")
+    WebElement MoreTShirtButton;
 
     public void clickYourLogoLink() {
         wdwait.until(ExpectedConditions.visibilityOf(YourLogoLink));
@@ -110,11 +108,6 @@ public class MainPage extends BaseTest {
         TShirtButton.click();
     }
 
-    public void clickMoreTShirtButton() {
-        wdwait.until(ExpectedConditions.visibilityOf(MoreTShirtButton));
-        MoreTShirtButton.click();
-    }
-
     public void clickAddToCartButton() {
         wdwait.until(ExpectedConditions.visibilityOf(AddToCartButton));
         AddToCartButton.click();
@@ -133,6 +126,10 @@ public class MainPage extends BaseTest {
     public void ScrollDown() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", TShirtButton);
+    }
+    public void clickMoreTShirtButton() {
+        wdwait.until(ExpectedConditions.visibilityOf(MoreTShirtButton));
+        MoreTShirtButton.click();
     }
 }
 
