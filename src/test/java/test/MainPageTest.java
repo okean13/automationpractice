@@ -7,8 +7,6 @@ import org.junit.Test;
 import page.EmptySearchButtonPage;
 import page.MainPage;
 import page.MoreButtonPage;
-import sun.applet.Main;
-
 
 public class MainPageTest extends BaseTest {
 
