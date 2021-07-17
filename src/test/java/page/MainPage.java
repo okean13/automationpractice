@@ -45,8 +45,15 @@ public class MainPage extends BaseTest {
 
     public @FindBy(xpath = "//div[@class=\"layer_cart_product col-xs-12 col-md-6\"]/h2")
     WebElement AddToCartMessage;
+
     public @FindBy(xpath = "//span[contains(text(),'More')]")
     WebElement MoreTShirtButton;
+
+    public @FindBy(xpath = "//div/a[@title=\"Product detail\"]")
+    WebElement ProductsInCartButton;
+
+    public @FindBy(xpath = "//li/a[@title=\"sample-2\"]/p[2]/button[contains(text(),'Shop now !')]")
+    WebElement ShopNowButton;
 
     public void clickYourLogoLink() {
         wdwait.until(ExpectedConditions.visibilityOf(YourLogoLink));
@@ -130,6 +137,10 @@ public class MainPage extends BaseTest {
     public void clickMoreTShirtButton() {
         wdwait.until(ExpectedConditions.visibilityOf(MoreTShirtButton));
         MoreTShirtButton.click();
+    }
+    public void clickShopNow(){
+        wdwait.until(ExpectedConditions.visibilityOf(ShopNowButton));
+        ShopNowButton.click();
     }
 }
 

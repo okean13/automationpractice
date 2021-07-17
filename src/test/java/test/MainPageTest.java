@@ -1,24 +1,27 @@
 package test;
 
 import base.BaseTest;
+import com.sun.javafx.css.StyleCache;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import page.EmptySearchButtonPage;
-import page.MainPage;
-import page.MoreButtonPage;
+import page.*;
 
 public class MainPageTest extends BaseTest {
 
     MainPage MainPageWorkClass;
     EmptySearchButtonPage EmptySearchButtonPageWorkClass;
     MoreButtonPage MoreButtonPageWorkClass;
+    KillAddPage KillAddPageWorkClass;
+    SearchButtonPage SearchButtonPageWorkClass;
 
     @Before
     public void SetUp5() {
         MainPageWorkClass = new MainPage();
         EmptySearchButtonPageWorkClass = new EmptySearchButtonPage();
         MoreButtonPageWorkClass = new MoreButtonPage();
+        KillAddPageWorkClass = new KillAddPage();
+        SearchButtonPageWorkClass = new SearchButtonPage();
     }
 
     @Test
@@ -35,6 +38,8 @@ public class MainPageTest extends BaseTest {
         MainPageWorkClass.clickYourLogoLink();
         MainPageWorkClass.cartLinkClick();
         MainPageWorkClass.inputSearchButton("Dresses");
+        Assert.assertTrue(SearchButtonPageWorkClass.successfulSearchInputMessageDisplayed());
+        Assert.assertEquals("7 results have been found.",SearchButtonPageWorkClass.successfulSearchInputMessageGetText());
     }
 
     @Test
@@ -68,6 +73,11 @@ public class MainPageTest extends BaseTest {
         MainPageWorkClass.clickMoreTShirtButton();
         Assert.assertTrue(MoreButtonPageWorkClass.successfulTShirtDescriptionDisplayed());
         Assert.assertEquals("Faded short sleeve t-shirt with high neckline. Soft and stretchy material for a comfortable fit. Accessorize with a straw hat and you're ready for summer!",MoreButtonPageWorkClass.successfulTShirtDescriptionGetText());
+    }
+    @Test
+    public void SuccessfulShopNow(){
+        MainPageWorkClass.clickShopNow();
+        KillAddPageWorkClass.clickCloseAdd();
     }
 }
 
