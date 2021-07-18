@@ -75,7 +75,7 @@ public class MainPageTest extends BaseTest {
         Assert.assertEquals("Faded short sleeve t-shirt with high neckline. Soft and stretchy material for a comfortable fit. Accessorize with a straw hat and you're ready for summer!",MoreButtonPageWorkClass.successfulTShirtDescriptionGetText());
     }
     @Test
-    public void SuccessfulShopNow(){
+    public void SuccessfulShopNowTest(){
         MainPageWorkClass.clickShopNow();
         KillAddPageWorkClass.clickCloseAdd();
     }
