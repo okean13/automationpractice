@@ -52,7 +52,7 @@ public class MainPage extends BaseTest {
     public @FindBy(xpath = "//div/a[@title=\"Product detail\"]")
     WebElement ProductsInCartButton;
 
-    public @FindBy(xpath = "//li/a[@title=\"sample-2\"]/p[2]/button[contains(text(),'Shop now !')]")
+    public @FindBy(xpath = "//a[@title=\"sample-2\"]/following::p[2]")
     WebElement ShopNowButton;
 
     public void clickYourLogoLink() {
