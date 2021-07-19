@@ -14,6 +14,7 @@ public class MainPageTest extends BaseTest {
     MoreButtonPage MoreButtonPageWorkClass;
     KillAddPage KillAddPageWorkClass;
     SearchButtonPage SearchButtonPageWorkClass;
+    CategoryPage CategoryPageWorkClass;
 
     @Before
     public void SetUp5() {
@@ -22,6 +23,7 @@ public class MainPageTest extends BaseTest {
         MoreButtonPageWorkClass = new MoreButtonPage();
         KillAddPageWorkClass = new KillAddPage();
         SearchButtonPageWorkClass = new SearchButtonPage();
+        CategoryPageWorkClass = new CategoryPage();
     }
 
     @Test
@@ -78,6 +80,15 @@ public class MainPageTest extends BaseTest {
     public void SuccessfulShopNowTest(){
         MainPageWorkClass.clickShopNow();
         KillAddPageWorkClass.clickCloseAdd();
+        //This test passes even when KillAddPageWorkClass does not exist.
+    }
+    @Test
+    public void SuccessfulTopsTest(){
+        MainPageWorkClass.hoverWomenCategoryButton();
+        MainPageWorkClass.clickTopsButton();
+        Assert.assertTrue(CategoryPageWorkClass.successfulTopsAlertDisplayed());
+        Assert.assertEquals("Choose from t-shirts, tops, blouses, short sleeves, long sleeves, tank tops, 3/4 sleeves and more.\n" +
+                 "Find the cut that suits you the best!",CategoryPageWorkClass.successfulTopsAlertGetText());
     }
 }
 
