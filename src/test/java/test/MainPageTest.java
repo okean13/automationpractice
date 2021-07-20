@@ -1,7 +1,6 @@
 package test;
 
 import base.BaseTest;
-import com.sun.javafx.css.StyleCache;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
