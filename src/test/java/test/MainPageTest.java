@@ -14,6 +14,7 @@ public class MainPageTest extends BaseTest {
     KillAddPage KillAddPageWorkClass;
     SearchButtonPage SearchButtonPageWorkClass;
     CategoryPage CategoryPageWorkClass;
+    ProductPage ProductPageWorkClass;
 
     @Before
     public void SetUp5() {
@@ -23,6 +24,7 @@ public class MainPageTest extends BaseTest {
         KillAddPageWorkClass = new KillAddPage();
         SearchButtonPageWorkClass = new SearchButtonPage();
         CategoryPageWorkClass = new CategoryPage();
+        ProductPageWorkClass = new ProductPage();
     }
 
     @Test
@@ -79,7 +81,7 @@ public class MainPageTest extends BaseTest {
     public void SuccessfulShopNowTest(){
         MainPageWorkClass.clickShopNow();
         KillAddPageWorkClass.clickCloseAdd();
-        //This test passes even when KillAddPageWorkClass does not exist.
+        //This test passes even when KillAddPageWorkClass does not exist. The "link Shop" now is useless.
     }
     @Test
     public void SuccessfulTopsTest(){
@@ -88,6 +90,15 @@ public class MainPageTest extends BaseTest {
         Assert.assertTrue(CategoryPageWorkClass.successfulTopsAlertDisplayed());
         Assert.assertEquals("Choose from t-shirts, tops, blouses, short sleeves, long sleeves, tank tops, 3/4 sleeves and more.\n" +
                  "Find the cut that suits you the best!",CategoryPageWorkClass.successfulTopsAlertGetText());
+    }
+    @Test
+    public void UnsuccessfulQuantityChecking(){
+        MainPageWorkClass.hoverTShirt();
+       MainPageWorkClass.clickMoreTShirtButton();
+       ProductPageWorkClass.clickPlusButton();
+       Assert.assertTrue(ProductPageWorkClass.SuccessfulCheckingQuantityDisplayed());
+       Assert.assertEquals("", ProductPageWorkClass.SuccessfulCheckingQuantityGetText());
+
     }
 }
 
