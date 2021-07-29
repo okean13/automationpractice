@@ -62,6 +62,9 @@ public class MainPage extends BaseTest {
     WebElement TopsButton;
 
 
+
+
+
     public void clickYourLogoLink() {
         wdwait.until(ExpectedConditions.visibilityOf(YourLogoLink));
         YourLogoLink.click();
@@ -158,6 +161,7 @@ public class MainPage extends BaseTest {
         wdwait.until(ExpectedConditions.visibilityOf(TopsButton));
         TopsButton.click();
     }
+
 }
 
 

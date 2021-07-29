@@ -94,11 +94,20 @@ public class MainPageTest extends BaseTest {
     @Test
     public void UnsuccessfulQuantityChecking(){
         MainPageWorkClass.hoverTShirt();
-       MainPageWorkClass.clickMoreTShirtButton();
-       ProductPageWorkClass.clickPlusButton();
-       Assert.assertTrue(ProductPageWorkClass.SuccessfulCheckingQuantityDisplayed());
-       Assert.assertEquals("", ProductPageWorkClass.SuccessfulCheckingQuantityGetText());
-
+        MainPageWorkClass.clickMoreTShirtButton();
+        ProductPageWorkClass.clickPlusButton();
+        Assert.assertTrue(ProductPageWorkClass.SuccessfulCheckingQuantityDisplayed());
+        Assert.assertEquals("", ProductPageWorkClass.SuccessfulCheckingQuantityGetText());
+        /* There should be "1" in expected and actual though the QuantityButton was clicked. This is a bug. */
+    }
+    @Test
+    public void FailedSuccessfulQuantityChecking(){
+        MainPageWorkClass.hoverTShirt();
+        MainPageWorkClass.clickMoreTShirtButton();
+        ProductPageWorkClass.hoverPlusButton();
+        ProductPageWorkClass.clickPlusButton();
+        Assert.assertTrue(ProductPageWorkClass.SuccessfulCheckingQuantityDisplayed());
+        Assert.assertEquals("2", ProductPageWorkClass.SuccessfulCheckingQuantityGetText());
     }
 }
 
