@@ -10,11 +10,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 public class ProductPage extends BaseTest {
-    public ProductPage(){
-        PageFactory.initElements(driver,this);
+    public ProductPage() {
+        PageFactory.initElements(driver, this);
     }
 
-    public @FindBy(xpath = "//input[@id=\"quantity_wanted\"]")
+    public @FindBy(xpath = "//input[@name=\"qty\"]")
     WebElement QuantityButton;
 
     public @FindBy(xpath = "//i[@class=\"icon-plus\"]")
@@ -26,40 +26,58 @@ public class ProductPage extends BaseTest {
     public @FindBy(xpath = "//option[@title=\"S\"]")
     WebElement CheckedSizeButton;
 
-    public @FindBy(xpath ="//li/a[@id=\"color_13\"]")
-    WebElement WhiteColorButton;
+    public @FindBy(xpath = "//li/a[@id=\"color_13\"]")
+    WebElement OrangeColourButton;
 
-    public void hoverPlusButton(){
-    wdwait.until(ExpectedConditions.elementToBeClickable(PlusButton));
+    public @FindBy(xpath = "//li/a[@id=\"color_14\"]")
+    WebElement BlueColourButton;
+
+    public void hoverPlusButton() {
+        wdwait.until(ExpectedConditions.elementToBeClickable(PlusButton));
         Actions hover = new Actions(driver);
         hover.moveToElement(PlusButton).perform();
-}
-    public void clickPlusButton(){
+    }
+
+    public void clickPlusButton() {
         wdwait.until(ExpectedConditions.visibilityOf(PlusButton));
         PlusButton.click();
     }
-    public boolean successfulCheckingQuantityDisplayed(){
+
+    public boolean successfulCheckingQuantityDisplayed() {
         wdwait.until(ExpectedConditions.visibilityOf(QuantityButton));
         return QuantityButton.isDisplayed();
     }
-    public String successfulCheckingQuantityGetText(){
+
+    public String successfulCheckingQuantityGetText() {
         wdwait.until(ExpectedConditions.visibilityOf(QuantityButton));
         return QuantityButton.getText();
     }
-    public void selectTShirtSize(String value){
+
+    public void selectTShirtSize(String value) {
         wdwait.until(ExpectedConditions.presenceOfElementLocated(By.id("group_1")));
         Select tShirtSize = new Select(TShirtSizeButton);
         tShirtSize.selectByValue(value);
     }
-    public void clickOrangeColorButton(){
-        wdwait.until(ExpectedConditions.visibilityOf(WhiteColorButton));
-        WhiteColorButton.click();
+
+    public String SuccessfulTShirtSizeSelectionGetText() {
+        wdwait.until(ExpectedConditions.visibilityOf(CheckedSizeButton));
+        return CheckedSizeButton.getText();
     }
-    public boolean SuccessfulTShirtSizeSelectionDisplayed(){
+
+    public void clickBlueColourButton() {
+        wdwait.until(ExpectedConditions.visibilityOf(BlueColourButton));
+        BlueColourButton.click();
+    }
+    public void clickOrangeColourButton(){
+        wdwait.until(ExpectedConditions.visibilityOf(OrangeColourButton));
+        OrangeColourButton.click();
+}
+    public boolean SuccessfulTShirtColourSelectionDisplayed() {
         wdwait.until(ExpectedConditions.visibilityOf(CheckedSizeButton));
         return CheckedSizeButton.isDisplayed();
     }
-    public String SuccessfulTShirtSizeSelectionGetText(){
+
+    public String SuccessfulTShirtColourSelectionGetText() {
         wdwait.until(ExpectedConditions.visibilityOf(CheckedSizeButton));
         return CheckedSizeButton.getText();
     }

@@ -98,7 +98,7 @@ public class MainPageTest extends BaseTest {
         ProductPageWorkClass.clickPlusButton();
         Assert.assertTrue(ProductPageWorkClass.successfulCheckingQuantityDisplayed());
         Assert.assertEquals("", ProductPageWorkClass.successfulCheckingQuantityGetText());
-        /* There should be "1" in expected and actual though the QuantityButton was clicked. This is a bug. */
+        /* There should be "1" in expected and actual though the (Quantity) PlusButton was clicked. This is a bug. */
     }
     @Test
     public void FailedSuccessfulQuantityCheckingTest(){
@@ -107,16 +107,18 @@ public class MainPageTest extends BaseTest {
         ProductPageWorkClass.hoverPlusButton();
         ProductPageWorkClass.clickPlusButton();
         Assert.assertTrue(ProductPageWorkClass.successfulCheckingQuantityDisplayed());
-        Assert.assertEquals("1", ProductPageWorkClass.successfulCheckingQuantityGetText());
+        Assert.assertEquals("2", ProductPageWorkClass.successfulCheckingQuantityGetText());
     }
     @Test
     public void successfulSelectingOrangeColorTShirtSizeTest(){
         MainPageWorkClass.hoverTShirt();
         MainPageWorkClass.clickMoreTShirtButton();
         ProductPageWorkClass.selectTShirtSize("1");
-        Assert.assertTrue(ProductPageWorkClass.SuccessfulTShirtSizeSelectionDisplayed());
-        Assert.assertEquals("S", ProductPageWorkClass.SuccessfulTShirtSizeSelectionGetText());
-        ProductPageWorkClass.clickOrangeColorButton();
+        Assert.assertTrue(ProductPageWorkClass.SuccessfulTShirtColourSelectionDisplayed());
+        Assert.assertEquals("S", ProductPageWorkClass.SuccessfulTShirtColourSelectionGetText());
+        ProductPageWorkClass.clickOrangeColourButton();
+        ProductPageWorkClass.clickBlueColourButton();
+        MainPageWorkClass.clickAddToCartButton();
     }
 }
 
