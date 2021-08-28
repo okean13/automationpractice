@@ -17,7 +17,7 @@ public class MainPageTest extends BaseTest {
     ProductPage ProductPageWorkClass;
 
     @Before
-    public void SetUp5() {
+    public void setUp5() {
         MainPageWorkClass = new MainPage();
         EmptySearchButtonPageWorkClass = new EmptySearchButtonPage();
         MoreButtonPageWorkClass = new MoreButtonPage();
@@ -28,7 +28,7 @@ public class MainPageTest extends BaseTest {
     }
 
     @Test
-    public void UnSuccessfulSearchTest() {
+    public void unSuccessfulSearchTest() {
         MainPageWorkClass.clickYourLogoLink();
         MainPageWorkClass.cartLinkClick();
         MainPageWorkClass.inputSearchButton(" ");
@@ -37,7 +37,7 @@ public class MainPageTest extends BaseTest {
     }
 
     @Test
-    public void SuccessfulSearchTest() {
+    public void successfulSearchTest() {
         MainPageWorkClass.clickYourLogoLink();
         MainPageWorkClass.cartLinkClick();
         MainPageWorkClass.inputSearchButton("Dresses");
@@ -46,7 +46,7 @@ public class MainPageTest extends BaseTest {
     }
 
     @Test
-    public void SuccessfulNewsletterSubscriptionTest() {
+    public void successfulNewsletterSubscriptionTest() {
         MainPageWorkClass.newsLetterButtonClick();
         MainPageWorkClass.inputEnterYourEmail("trecitest@gmail.com");
         Assert.assertTrue(MainPageWorkClass.successfulNewsletterSubscriptionAlertDisplayed());
@@ -54,7 +54,7 @@ public class MainPageTest extends BaseTest {
     }
 
     @Test
-    public void UnsuccessfulNewsletterSubscriptionTest() {
+    public void unsuccessfulNewsletterSubscriptionTest() {
         MainPageWorkClass.newsLetterButtonClick();
         MainPageWorkClass.inputEnterYourEmail("prvoslav@gmail.com");
         Assert.assertTrue(MainPageWorkClass.unsuccessfulNewsletterSubscriptionDisplayed());
@@ -62,7 +62,7 @@ public class MainPageTest extends BaseTest {
     }
 
     @Test
-    public void SuccessfulAddToCartTest() {
+    public void successfulAddToCartTest() {
         MainPageWorkClass.ScrollDown();
         MainPageWorkClass.hoverTShirt();
         MainPageWorkClass.clickAddToCartButton();
@@ -71,43 +71,35 @@ public class MainPageTest extends BaseTest {
     }
 
     @Test
-    public void SuccessfulMoreButtonTest() {
+    public void successfulMoreButtonTest() {
         MainPageWorkClass.hoverTShirt();
         MainPageWorkClass.clickMoreTShirtButton();
         Assert.assertTrue(MoreButtonPageWorkClass.successfulTShirtDescriptionDisplayed());
         Assert.assertEquals("Faded short sleeve t-shirt with high neckline. Soft and stretchy material for a comfortable fit. Accessorize with a straw hat and you're ready for summer!",MoreButtonPageWorkClass.successfulTShirtDescriptionGetText());
     }
     @Test
-    public void SuccessfulShopNowTest(){
+    public void successfulShopNowTest(){
         MainPageWorkClass.clickShopNow();
         KillAddPageWorkClass.clickCloseAdd();
         //This test passes even when KillAddPageWorkClass does not exist. The "link Shop" now is useless.
     }
     @Test
-    public void SuccessfulTopsTest(){
+    public void successfulTopsTest(){
         MainPageWorkClass.hoverWomenCategoryButton();
         MainPageWorkClass.clickTopsButton();
         Assert.assertTrue(CategoryPageWorkClass.successfulTopsAlertDisplayed());
         Assert.assertEquals("Choose from t-shirts, tops, blouses, short sleeves, long sleeves, tank tops, 3/4 sleeves and more.\n" +
                  "Find the cut that suits you the best!",CategoryPageWorkClass.successfulTopsAlertGetText());
     }
+
     @Test
-    public void UnsuccessfulQuantityCheckingTest(){
+    public void successfulQuantityCheckingTest(){
         MainPageWorkClass.hoverTShirt();
         MainPageWorkClass.clickMoreTShirtButton();
+//        ProductPageWorkClass.hoverPlusButton();
         ProductPageWorkClass.clickPlusButton();
         Assert.assertTrue(ProductPageWorkClass.successfulCheckingQuantityDisplayed());
-        Assert.assertEquals("", ProductPageWorkClass.successfulCheckingQuantityGetText());
-        /* There should be "1" in expected and actual though the (Quantity) PlusButton was clicked. This is a bug. */
-    }
-    @Test
-    public void FailedSuccessfulQuantityCheckingTest(){
-        MainPageWorkClass.hoverTShirt();
-        MainPageWorkClass.clickMoreTShirtButton();
-        ProductPageWorkClass.hoverPlusButton();
-        ProductPageWorkClass.clickPlusButton();
-        Assert.assertTrue(ProductPageWorkClass.successfulCheckingQuantityDisplayed());
-        Assert.assertEquals("2", ProductPageWorkClass.successfulCheckingQuantityGetText());
+        Assert.assertEquals("2", ProductPageWorkClass.successfulCheckingQuantityGetAttribute());
     }
     @Test
     public void successfulSelectingOrangeColorTShirtSizeTest(){

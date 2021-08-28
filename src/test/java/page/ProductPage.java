@@ -15,13 +15,13 @@ public class ProductPage extends BaseTest {
     }
 
     public @FindBy(xpath = "//input[@name=\"qty\"]")
-    WebElement QuantityButton;
+    WebElement QuantityInput;
 
     public @FindBy(xpath = "//i[@class=\"icon-plus\"]")
     WebElement PlusButton;
 
     public @FindBy(xpath = "//select[@id=\"group_1\"]")
-    WebElement TShirtSizeButton;
+    WebElement TShirtSizeInput;
 
     public @FindBy(xpath = "//option[@title=\"S\"]")
     WebElement CheckedSizeButton;
@@ -32,11 +32,6 @@ public class ProductPage extends BaseTest {
     public @FindBy(xpath = "//li/a[@id=\"color_14\"]")
     WebElement BlueColourButton;
 
-    public void hoverPlusButton() {
-        wdwait.until(ExpectedConditions.elementToBeClickable(PlusButton));
-        Actions hover = new Actions(driver);
-        hover.moveToElement(PlusButton).perform();
-    }
 
     public void clickPlusButton() {
         wdwait.until(ExpectedConditions.visibilityOf(PlusButton));
@@ -44,18 +39,18 @@ public class ProductPage extends BaseTest {
     }
 
     public boolean successfulCheckingQuantityDisplayed() {
-        wdwait.until(ExpectedConditions.visibilityOf(QuantityButton));
-        return QuantityButton.isDisplayed();
+        wdwait.until(ExpectedConditions.visibilityOf(QuantityInput));
+        return QuantityInput.isDisplayed();
     }
 
-    public String successfulCheckingQuantityGetText() {
-        wdwait.until(ExpectedConditions.visibilityOf(QuantityButton));
-        return QuantityButton.getText();
+    public String successfulCheckingQuantityGetAttribute() {
+        wdwait.until(ExpectedConditions.visibilityOf(QuantityInput));
+        return QuantityInput.getAttribute("value");
     }
 
     public void selectTShirtSize(String value) {
         wdwait.until(ExpectedConditions.presenceOfElementLocated(By.id("group_1")));
-        Select tShirtSize = new Select(TShirtSizeButton);
+        Select tShirtSize = new Select(TShirtSizeInput);
         tShirtSize.selectByValue(value);
     }
 
