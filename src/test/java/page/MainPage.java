@@ -12,7 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class MainPage extends BaseTest {
 
-    public MainPage() {
+    public MainPage()
+    {
         PageFactory.initElements(driver, this);
     }
 
@@ -61,7 +62,8 @@ public class MainPage extends BaseTest {
     public @FindBy(xpath = "//div[@class=\"cat-title\"]/following::a[2]")
     WebElement TopsButton;
 
-
+    public @FindBy(xpath = "//span[contains(text(),'Proceed to checkout')]")
+    WebElement ProceedToCheckoutButton;
 
 
 
@@ -161,7 +163,10 @@ public class MainPage extends BaseTest {
         wdwait.until(ExpectedConditions.visibilityOf(TopsButton));
         TopsButton.click();
     }
-
+public void clickProceedToCheckoutButton(){
+        wdwait.until(ExpectedConditions.visibilityOf(ProceedToCheckoutButton));
+        ProceedToCheckoutButton.click();
+}
 }
 
 

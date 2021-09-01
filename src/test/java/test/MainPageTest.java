@@ -15,6 +15,7 @@ public class MainPageTest extends BaseTest {
     SearchButtonPage SearchButtonPageWorkClass;
     CategoryPage CategoryPageWorkClass;
     ProductPage ProductPageWorkClass;
+    OrderPage OrderPageWorkClass;
 
     @Before
     public void setUp5() {
@@ -25,6 +26,7 @@ public class MainPageTest extends BaseTest {
         SearchButtonPageWorkClass = new SearchButtonPage();
         CategoryPageWorkClass = new CategoryPage();
         ProductPageWorkClass = new ProductPage();
+        OrderPageWorkClass = new OrderPage();
     }
 
     @Test
@@ -68,6 +70,9 @@ public class MainPageTest extends BaseTest {
         MainPageWorkClass.clickAddToCartButton();
         Assert.assertTrue(MainPageWorkClass.successfulAddToCartAlertDisplayed());
         Assert.assertEquals("Product successfully added to your shopping cart", MainPageWorkClass.successfulAddToCartAlertGetText());
+        MainPageWorkClass.clickProceedToCheckoutButton();
+        Assert.assertTrue(OrderPageWorkClass.successfulProceedToCheckoutIsDisplayed());
+        Assert.assertEquals("Your shopping cart contains: 1 Product",OrderPageWorkClass.successfulProceedToCheckoutGetText());
     }
 
     @Test
@@ -109,8 +114,22 @@ public class MainPageTest extends BaseTest {
         Assert.assertTrue(ProductPageWorkClass.SuccessfulTShirtColourSelectionDisplayed());
         Assert.assertEquals("S", ProductPageWorkClass.SuccessfulTShirtColourSelectionGetText());
         ProductPageWorkClass.clickOrangeColourButton();
-        ProductPageWorkClass.clickBlueColourButton();
-        MainPageWorkClass.clickAddToCartButton();
+        ProductPageWorkClass.clickAddToWishlistButton();
+        Assert.assertTrue(ProductPageWorkClass.unSuccessfulAddingToWishlistIsDisplayed());
+        Assert.assertEquals("You must be logged in to manage your wishlist.",ProductPageWorkClass.unSuccessfulAddingToWishlistGetText());
     }
+    @Test
+    public void unSuccessfulAddingToWishlistTest(){
+        MainPageWorkClass.hoverTShirt();
+        MainPageWorkClass.clickMoreTShirtButton();
+        ProductPageWorkClass.selectTShirtSize("2");
+        Assert.assertTrue(ProductPageWorkClass.SuccessfulTShirtColourSelectionDisplayed());
+        Assert.assertEquals("M", ProductPageWorkClass.SuccessfulTShirtColourSelectionGetText());
+        ProductPageWorkClass.clickBlueColourButton();
+        ProductPageWorkClass.clickAddToWishlistButton();
+        Assert.assertTrue(ProductPageWorkClass.unSuccessfulAddingToWishlistIsDisplayed());
+        Assert.assertEquals("You must be logged in to manage your wishlist.",ProductPageWorkClass.unSuccessfulAddingToWishlistGetText());
+    }
+
 }
 

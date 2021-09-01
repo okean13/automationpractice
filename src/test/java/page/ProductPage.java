@@ -23,14 +23,23 @@ public class ProductPage extends BaseTest {
     public @FindBy(xpath = "//select[@id=\"group_1\"]")
     WebElement TShirtSizeInput;
 
-    public @FindBy(xpath = "//option[@title=\"S\"]")
-    WebElement CheckedSizeButton;
+   // public @FindBy(xpath = "//option[@title=\"S\"]")
+   // WebElement CheckedSizeButton;
 
     public @FindBy(xpath = "//li/a[@id=\"color_13\"]")
     WebElement OrangeColourButton;
 
     public @FindBy(xpath = "//li/a[@id=\"color_14\"]")
     WebElement BlueColourButton;
+
+    public @FindBy(xpath = "//span[contains(text(),'Add to cart')]")
+    WebElement AddToCart2Button;
+
+    public @FindBy(xpath = "//a[@id=\"wishlist_button\"]")
+    WebElement AddToWishlistButton;
+
+    public @FindBy(xpath ="//p[@class=\"fancybox-error\"]")
+    WebElement MustBeLoggedMessage;
 
 
     public void clickPlusButton() {
@@ -54,11 +63,6 @@ public class ProductPage extends BaseTest {
         tShirtSize.selectByValue(value);
     }
 
-    public String SuccessfulTShirtSizeSelectionGetText() {
-        wdwait.until(ExpectedConditions.visibilityOf(CheckedSizeButton));
-        return CheckedSizeButton.getText();
-    }
-
     public void clickBlueColourButton() {
         wdwait.until(ExpectedConditions.visibilityOf(BlueColourButton));
         BlueColourButton.click();
@@ -68,13 +72,29 @@ public class ProductPage extends BaseTest {
         OrangeColourButton.click();
 }
     public boolean SuccessfulTShirtColourSelectionDisplayed() {
-        wdwait.until(ExpectedConditions.visibilityOf(CheckedSizeButton));
-        return CheckedSizeButton.isDisplayed();
+        wdwait.until(ExpectedConditions.presenceOfElementLocated(By.id("group_1")));
+        return TShirtSizeInput.isDisplayed();
     }
 
     public String SuccessfulTShirtColourSelectionGetText() {
-        wdwait.until(ExpectedConditions.visibilityOf(CheckedSizeButton));
-        return CheckedSizeButton.getText();
+        wdwait.until(ExpectedConditions.presenceOfElementLocated(By.id("group_1")));
+        return TShirtSizeInput.getText();
     }
-}
+    public void clickAddToCart2Button(){
+        wdwait.until(ExpectedConditions.visibilityOf(AddToCart2Button));
+        AddToCart2Button.click();
+    }
+    public void clickAddToWishlistButton(){
+        wdwait.until(ExpectedConditions.visibilityOf(AddToWishlistButton));
+        AddToWishlistButton.click();
+    }
+    public boolean unSuccessfulAddingToWishlistIsDisplayed(){
+        wdwait.until(ExpectedConditions.visibilityOf(MustBeLoggedMessage));
+        return MustBeLoggedMessage.isDisplayed();
+    }
+    public String unSuccessfulAddingToWishlistGetText(){
+        wdwait.until(ExpectedConditions.visibilityOf(MustBeLoggedMessage));
+        return MustBeLoggedMessage.getText();
+    }
+    }
 
