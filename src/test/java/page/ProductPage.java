@@ -21,7 +21,10 @@ public class ProductPage extends BaseTest {
     WebElement PlusButton;
 
     public @FindBy(xpath = "//select[@id=\"group_1\"]")
-    WebElement TShirtSizeInput;
+    WebElement TShirtSize;
+
+    public @FindBy(xpath = "//div[@id=\"uniform-group_1\"]/span")
+    WebElement TShirtSizeLabel;
 
    // public @FindBy(xpath = "//option[@title=\"S\"]")
    // WebElement CheckedSizeButton;
@@ -54,12 +57,12 @@ public class ProductPage extends BaseTest {
 
     public String successfulCheckingQuantityGetAttribute() {
         wdwait.until(ExpectedConditions.visibilityOf(QuantityInput));
-        return QuantityInput.getAttribute("value");
+        return QuantityInput.getAttribute("title");
     }
 
     public void selectTShirtSize(String value) {
         wdwait.until(ExpectedConditions.presenceOfElementLocated(By.id("group_1")));
-        Select tShirtSize = new Select(TShirtSizeInput);
+        Select tShirtSize = new Select(TShirtSize);
         tShirtSize.selectByValue(value);
     }
 
@@ -71,14 +74,22 @@ public class ProductPage extends BaseTest {
         wdwait.until(ExpectedConditions.visibilityOf(OrangeColourButton));
         OrangeColourButton.click();
 }
-    public boolean SuccessfulTShirtColourSelectionDisplayed() {
-        wdwait.until(ExpectedConditions.presenceOfElementLocated(By.id("group_1")));
-        return TShirtSizeInput.isDisplayed();
+    public boolean successfulTShirtSizeSelectionDisplayed() {
+        wdwait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id=\"uniform-group_1\"]/following::span")));
+        return TShirtSizeLabel.isDisplayed();
     }
 
-    public String SuccessfulTShirtColourSelectionGetText() {
-        wdwait.until(ExpectedConditions.presenceOfElementLocated(By.id("group_1")));
-        return TShirtSizeInput.getText();
+    public String successfulTShirtSizeSelectionGetText() {
+        wdwait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id=\"uniform-group_1\"]/following::span")));
+        return TShirtSizeLabel.getText();
+    }
+    public boolean successfulTShirtColourSelectionDisplayed(){
+        wdwait.until(ExpectedConditions.visibilityOf(OrangeColourButton));
+        return OrangeColourButton.isDisplayed();
+    }
+    public String successfulTShirtColourSelectionGetAttribute(){
+        wdwait.until(ExpectedConditions.visibilityOf(OrangeColourButton));
+        return OrangeColourButton.getAttribute("class");
     }
     public void clickAddToCart2Button(){
         wdwait.until(ExpectedConditions.visibilityOf(AddToCart2Button));

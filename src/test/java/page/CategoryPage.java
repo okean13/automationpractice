@@ -10,6 +10,7 @@ public class CategoryPage extends BaseTest {
     public CategoryPage(){
         PageFactory.initElements(driver,this);
     }
+
     public @FindBy(xpath = "//div[@class=\"rte\"]")
     WebElement TopsText;
 

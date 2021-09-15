@@ -8,7 +8,7 @@ import page.ContactUsPage;
 
 public class ContactUsTest extends BaseTest {
 
-    page.ContactUsPage ContactUsPageWorkClass;
+    ContactUsPage ContactUsPageWorkClass;
 
     @Before
     public void setUp2()
