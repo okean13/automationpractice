@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class ProductPage extends BaseTest {
     public ProductPage() {
+
         PageFactory.initElements(driver, this);
     }
 
@@ -43,6 +44,14 @@ public class ProductPage extends BaseTest {
 
     public @FindBy(xpath ="//p[@class=\"fancybox-error\"]")
     WebElement MustBeLoggedMessage;
+
+    public @FindBy(className ="active")
+    WebElement PopularButton;
+
+    public @FindBy(id ="center_column")
+    WebElement PhotogaphPopular;
+
+
 
 
     public void clickPlusButton() {
@@ -106,6 +115,18 @@ public class ProductPage extends BaseTest {
     public String unSuccessfulAddingToWishlistGetText(){
         wdwait.until(ExpectedConditions.visibilityOf(MustBeLoggedMessage));
         return MustBeLoggedMessage.getText();
+    }
+    public void clickPopularButton(){
+        wdwait.until(ExpectedConditions.visibilityOf(PopularButton));
+        PopularButton.click();
+    }
+    public boolean successfulPhotographsDisplayed(){
+        wdwait.until(ExpectedConditions.visibilityOf(PhotogaphPopular));
+        return PhotogaphPopular.isDisplayed();
+    }
+    public String successfulPhotographGetAttribute(){
+        wdwait.until(ExpectedConditions.visibilityOf(PhotogaphPopular));
+        return PhotogaphPopular.getAttribute("");
     }
     }
 

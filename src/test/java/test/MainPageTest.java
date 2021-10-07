@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import page.*;
 
+import java.util.Random;
+
 public class MainPageTest extends BaseTest {
 
     MainPage MainPageWorkClass;
@@ -16,6 +18,7 @@ public class MainPageTest extends BaseTest {
     CategoryPage CategoryPageWorkClass;
     ProductPage ProductPageWorkClass;
     OrderPage OrderPageWorkClass;
+    AlreadyRegisteredPage AlreadyRegisteredPageWorkClass;
 
 
     @Before
@@ -28,7 +31,7 @@ public class MainPageTest extends BaseTest {
         CategoryPageWorkClass = new CategoryPage();
         ProductPageWorkClass = new ProductPage();
         OrderPageWorkClass = new OrderPage();
-
+        AlreadyRegisteredPageWorkClass= new AlreadyRegisteredPage();
     }
 
     @Test
@@ -131,16 +134,18 @@ public class MainPageTest extends BaseTest {
         Assert.assertTrue(ProductPageWorkClass.unSuccessfulAddingToWishlistIsDisplayed());
         Assert.assertEquals("You must be logged in to manage your wishlist.",ProductPageWorkClass.unSuccessfulAddingToWishlistGetText());
     }
-   // @Test
-   // public void successfulAddingToWishlistTest(){
-        //MainPageWorkClass.hoverTShirt();
-        //MainPageWorkClass.clickMoreTShirtButton();
-        //ProductPageWorkClass.clickBlueColourButton();
-        //ProductPageWorkClass.clickAddToWishlistButton();
-        //AlreadyRegisteredPageWorkClass.clickSignInField();
-       // AlreadyRegisteredPageWorkClass.inputEmail("prvoslav@gmail.com");
-        //AlreadyRegisteredPageWorkClass.inputPassword("kikiriki123");
-   //}
+   @Test
+    public void successfulAddingToWishlistTest(){
+        MainPageWorkClass.hoverTShirt();
+        MainPageWorkClass.clickMoreTShirtButton();
+        ProductPageWorkClass.clickBlueColourButton();
+        ProductPageWorkClass.clickAddToWishlistButton();
+        AlreadyRegisteredPageWorkClass.clickSignInField();
+        Random random = new Random();
+        int x = random.nextInt();
+        AlreadyRegisteredPageWorkClass.inputEmail("prvoslav+x"+"@gmail.com");
+        AlreadyRegisteredPageWorkClass.inputPassword("kikiriki123+x");
+     }
 
     @Test
     public void successfulTShirtSizeSelectionTest(){
@@ -150,7 +155,6 @@ public class MainPageTest extends BaseTest {
         Assert.assertTrue(ProductPageWorkClass.successfulTShirtSizeSelectionDisplayed());
         Assert.assertEquals("S", ProductPageWorkClass.successfulTShirtSizeSelectionGetText());
     }
-
 
 }
 
